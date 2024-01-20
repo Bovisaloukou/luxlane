@@ -501,11 +501,11 @@ ALTER TABLE `utilisateurs`
 --
 -- Contraintes pour la table `commandes`
 --
-ALTER TABLE `commandes`
+/*ALTER TABLE `commandes`
   ADD CONSTRAINT `commandes_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`),
   ADD CONSTRAINT `commandes_ibfk_2` FOREIGN KEY (`id_adresse_livraison`) REFERENCES `adresse_livraison` (`id_adresse_livraison`),
   ADD CONSTRAINT `commandes_ibfk_3` FOREIGN KEY (`id_adresse_facturation`) REFERENCES `adresse_facturation` (`id_adresse_facturation`);
-
+*/
 --
 -- Contraintes pour la table `commentaires`
 --

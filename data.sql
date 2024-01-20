@@ -65,13 +65,13 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `commandes` (
   `id_commande` int(11) NOT NULL,
-  `id_utilisateur` int(11) DEFAULT NULL COMMENT 'ID de l''utilisateur associé',
+  `id_utilisateur` int(11) NOT NULL COMMENT 'ID de l''utilisateur associé',
   `date_commande` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Date de la commande',
   `statut_commande` enum('en_cours','expediee','livree','annulee') NOT NULL COMMENT 'Statut de la commande',
   `montant_total` decimal(10,2) NOT NULL COMMENT 'Montant total de la commande',
   `methode_paiement` varchar(255) DEFAULT NULL COMMENT 'Méthode de paiement',
-  `id_adresse_livraison` int(11) DEFAULT NULL COMMENT 'ID de l''adresse de livraison',
-  `id_adresse_facturation` int(11) DEFAULT NULL COMMENT 'ID de l''adresse de facturation',
+  `id_adresse_livraison` int(11) NOT NULL COMMENT 'ID de l''adresse de livraison',
+  `id_adresse_facturation` int(11) NOT NULL COMMENT 'ID de l''adresse de facturation',
   `details_produits` text DEFAULT NULL COMMENT 'Détails des produits de la commande (au format JSON)',
   `numero_suivi` varchar(255) DEFAULT NULL COMMENT 'Numéro de suivi de la commande',
   `notes_speciales` text DEFAULT NULL COMMENT 'Notes spéciales sur la commande',
@@ -263,8 +263,8 @@ CREATE TABLE `utilisateurs` (
   `nom_complet` varchar(255) NOT NULL COMMENT 'Nom complet de l''utilisateur',
   `email` varchar(255) NOT NULL COMMENT 'Adresse e-mail de l''utilisateur',
   `mot_de_passe` varchar(255) NOT NULL COMMENT 'Mot de passe de l''utilisateur',
-  `id_adresse_livraison` int(11) DEFAULT NULL COMMENT 'ID de l''adresse de livraison',
-  `id_adresse_facturation` int(11) DEFAULT NULL COMMENT 'ID de l''adresse de facturation',
+  `id_adresse_livraison` int(11) NOT NULL COMMENT 'ID de l''adresse de livraison',
+  `id_adresse_facturation` int(11) NOT NULL COMMENT 'ID de l''adresse de facturation',
   `role` enum('client','vendeur') NOT NULL COMMENT 'Rôle de l''utilisateur (client ou vendeur)',
   `historique_achats` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Historique des achats de l''utilisateur (au format JSON)' CHECK (json_valid(`historique_achats`)),
   `age` int(11) DEFAULT NULL COMMENT 'Âge de l''utilisateur',
@@ -501,11 +501,11 @@ ALTER TABLE `utilisateurs`
 --
 -- Contraintes pour la table `commandes`
 --
-/*ALTER TABLE `commandes`
+ALTER TABLE `commandes`
   ADD CONSTRAINT `commandes_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`),
   ADD CONSTRAINT `commandes_ibfk_2` FOREIGN KEY (`id_adresse_livraison`) REFERENCES `adresse_livraison` (`id_adresse_livraison`),
   ADD CONSTRAINT `commandes_ibfk_3` FOREIGN KEY (`id_adresse_facturation`) REFERENCES `adresse_facturation` (`id_adresse_facturation`);
-*/
+
 --
 -- Contraintes pour la table `commentaires`
 --

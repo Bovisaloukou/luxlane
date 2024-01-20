@@ -285,8 +285,10 @@ CREATE TABLE `utilisateurs` (
 -- Index pour la table `adresses`
 --
 ALTER TABLE `adresse_facturation`
-  ADD INDEX `idx_id_adresse_facturation` (`id_adresse_facturation`);
+  ADD PRIMARY KEY (`id_adresse_facturation`);
 
+ALTER TABLE `adresse_livraison`
+  ADD PRIMARY KEY (`id_adresse_livraison`);
 --
 -- Index pour la table `categories`
 --
